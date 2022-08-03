@@ -22,7 +22,7 @@ const App = () => {
     }
 
     const handleClickButton = () => {
-        setFoodList([]);
+        setNumber(0);
         getData();
         setIsClicked(true);        
     }
