@@ -1,12 +1,17 @@
 require('dotenv').config();
 const axios = require('axios');
 
+const url = `https://eolink.o.apispace.com/eat222/api/v1/forward/chishenme?size=`;
 
-const url = `https://eolink.o.apispace.com/eat222/api/v1/forward/chishenme?size=1`;
+exports.handler = async (event, context) => {    
 
-exports.handler = async (event, context) => {
+    const number = await event.body;
+    console.log(number);
+
+    const final_url = number ? `${url}${number}` : `${url}${1}`;
+    
     try {       
-        const resp = await axios.get(url, {
+        const resp = await axios.get(`${final_url}`, {
             headers: {
                 "X-APISpace-Token": process.env.RANDOM_FOOD_TOKEN,
                 "Authorization-Type": "apikey"

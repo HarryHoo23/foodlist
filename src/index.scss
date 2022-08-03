@@ -1,8 +1,19 @@
 .app {
     color: #fff;
-    background: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .5)), url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80') no-repeat center center /cover;
-    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.5)),
+        url("https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1887&q=80")
+            no-repeat center center / cover;    
     padding: 100px 0;
+
+    h1 {
+        font-size: 40px;
+    }
+
+    #foods {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
     .result {
         font-size: 20px;
@@ -13,4 +24,9 @@
             font-size: 60px;
         }
     }
+}
+
+
+.font-large {
+    font-size: 24px;
 }
