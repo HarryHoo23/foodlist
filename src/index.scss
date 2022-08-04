@@ -19,10 +19,15 @@
     .result {
         font-size: 20px;
 
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
         h2 {
             margin-top: 15px;
             font-weight: bold;
-            font-size: 60px;
+            font-size: 40px;
         }
     }
 }

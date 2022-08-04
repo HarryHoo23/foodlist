@@ -57,18 +57,18 @@ const App = () => {
             if (number < 6) {
                 if (foodList.length > 0) {
                     return <div className="result">不如今天吃：<br />
-                        <h2>
+                        <ul className="m-0">
                             {foodList.map((item, index) => {
                                 if (foodList.length > 1) {
                                     return (
-                                        <span key={index}>{item},</span>
+                                        <li key={index}><h2>{item}~</h2></li>
                                     )
                                 }
                                 return (
-                                    <span key={index}>{item}</span>
+                                    <li key={index}><h2>{item}!</h2></li>
                                 )
                             })}
-                        </h2>
+                        </ul>
                     </div>
                 }
             } else {
