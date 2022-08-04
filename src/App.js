@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Button, Spinner, Form } from "react-bootstrap";
 import axios from "axios";
 
+const options = [1, 2, 3, 4, 5, 6, 7, 8];
+
 const App = () => {
     
     const [foodList, setFoodList] = useState([]);  
@@ -15,6 +17,7 @@ const App = () => {
             const { data } = await axios.get('api/randomFood');
             setIsLoading(false);
             setFoodList(data.data);
+            setIsClicked(true);
         } catch (error) {
             setIsLoading(false);
             console.log(error);
@@ -23,8 +26,7 @@ const App = () => {
 
     const handleClickButton = () => {
         setNumber(0);
-        getData();
-        setIsClicked(true);        
+        getData();        
     }
 
     const handleChange = (e) => {        
@@ -48,8 +50,6 @@ const App = () => {
         handleSubmit();        
     }, [number])
 
-    const options = [1, 2, 3, 4, 5, 6, 7, 8]
-
     const foodResult = () => {
         if (isLoading) {
             return <Spinner animation="border" variant="light" />
@@ -61,7 +61,7 @@ const App = () => {
                             {foodList.map((item, index) => {
                                 if (foodList.length > 1) {
                                     return (
-                                    <span key={index}>{item}, </span>
+                                        <span key={index}>{item},</span>
                                     )
                                 }
                                 return (
@@ -85,20 +85,22 @@ const App = () => {
             <p className="mt-3">不知道今天吃什么？没关系，一键帮你解决！</p>
             <Row className="mt-5 text-center">
                 <p className="text-center mt-5 font-large">随便吃一个？</p>
-                <Button className="mb-3 w-75 m-auto" onClick={handleClickButton}>{!isClicked ? '点这里！' : '不喜欢？那换一个？'}</Button>
+                <Button variant="outline-light" className="mb-3 w-75 m-auto" onClick={handleClickButton}>{!isClicked ? '点这里！' : '不喜欢？那换一个？'}</Button>                
                 <div className="mt-3">
-                    <p className="text-center font-large">一个不够吃？多选几个咯！</p>
-                    <Form>
-                        <Form.Select id="foods" value={number} className="w-50 mb-4" onChange={handleChange}>
-                            {options.map((item, index) => {
-                                return (
-                                    <option value={item} key={index}>
-                                        {item}
-                                    </option>
-                                )
-                            })}
-                        </Form.Select>
-                    </Form>
+                    {isClicked && <>
+                        <p className="text-center font-large">一个不够吃？多选几个咯！</p>
+                        <Form>
+                            <Form.Select id="foods" value={number} className="w-50 mb-4" onChange={handleChange}>
+                                {options.map((item, index) => {
+                                    return (
+                                        <option value={item} key={index}>
+                                            {item} 道菜？
+                                        </option>
+                                    )
+                                })}
+                            </Form.Select>
+                        </Form>
+                    </>}
                     {foodResult()}                    
                 </div>
             </Row>
